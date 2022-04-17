@@ -74,7 +74,9 @@ if (!empty($messages)) {
        
        <label>
                Биография:<br />
-               <textarea name="biography" <?php if ($errors['biography']) print 'class="error"' ? value="<?php print $values['biography']; ?>"> ></textarea>
+               <textarea name="biography" 
+                         <?php if ($errors['biography']) print 'class="error"' ?>
+                         value="<?php print $values['biography']; ?>" ></textarea>
              </label><br />
              
              <br />
