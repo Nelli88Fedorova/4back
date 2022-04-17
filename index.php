@@ -13,9 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $errors['hand'] = !empty($_COOKIE['hand_error']);$errors['biography'] = !empty($_COOKIE['biography_error']);
   $errors['syperpover'] = !empty($_COOKIE['syperpover_error']);
 
-   foreach ($errors as $er)
+   foreach ($errors as $key =>$er)
  { 
-  $errorname=key($er) ."_error";
+  $errorname=$key ."_error";
    if ($er) 
    { setcookie($errorname, '', time() - 3600);
     if($er=='1') $messages[] = '<div class="error">Заполните поле.</div>';
@@ -48,9 +48,9 @@ $formdata=array(
 else {
   // Проверяем ошибки.
   $errors = FALSE;
-foreach ($formdata as $v)
+foreach ($formdata as  $key =>$v)
 {
-  $errorname=key($v) ."_error";
+  $errorname=$key ."_error";
  if (empty($v))
  {
     setcookie($errorname, '1', time() + 24 * 60 * 60);
@@ -62,7 +62,7 @@ foreach ($formdata as $v)
     $errors = TRUE;
   }
   else {
-    setcookie(key($v), $v, time() + 30 * 24 * 60 * 60);
+    setcookie($key, $v, time() + 30 * 24 * 60 * 60);
   }
  }
 
