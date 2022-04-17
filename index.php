@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     setcookie($errorname, '', time() - 3600);
     // Выводим сообщение.
     if($er=='1') $messages[] = '<div class="error">Заполните поле.</div>';
-    else $messages[] = '<div class="error"> Недопустимые символы: /\ : * ? >< \' \" |. </div>';
+    else $messages[] = '<div class="error"> Недопустимые символы: " /\ : * ? >< \' \" | ". </div>';
   }
 }
 
