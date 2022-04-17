@@ -34,7 +34,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
  include('form.php');
 }
-$formdata=array(
+
+   }
+else {
+   $formdata=array(
     'name'=>$_POST['name'],
     'email'=>$_POST['email'],
     'date'=>$_POST['date'],
@@ -44,8 +47,6 @@ $formdata=array(
     'check'=>$_POST['check'],
     'syperpover'=>implode(',',$_POST['syperpover']),
 );
-   }
-else {
   // Проверяем ошибки.
   $errors = FALSE;
 foreach ($formdata as  $key =>$v)
