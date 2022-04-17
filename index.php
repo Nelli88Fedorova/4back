@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if($er=='1') $messages[] = '<div class="error">Заполните поле.</div>';
     else $messages[] = '<div class="error"> Недопустимые символы! </div>';
   }
-}
+
 
   $values = array();
   $values['name'] = empty($_COOKIE['name']) ? '' : $_COOKIE['name'];
@@ -44,6 +44,7 @@ $formdata=array(
     'check'=>$_POST['check'],
     'syperpover'=>implode(',',$_POST['syperpover']),
 );
+   }
 else {
   // Проверяем ошибки.
   $errors = FALSE;
