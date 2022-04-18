@@ -45,12 +45,12 @@ if (!empty($messages)) {
     <div class="for">
     <h4><form action="" method="POST">
       <label> Имя:<br />
-      <input name="name" <?php if (!$errors['name']) print 'class="error"' ?> value="<?php if ($errors['name']) print $values['name']; else print ""; ?>" /></label><br />
+      <input name="name" <?php if (!$errors['name']) print 'class="error"' ?> value="<?php  print $values['name'];  ?>" /></label><br />
 
  <label> e-mail:<br />
- <input name="email" <?php if ($errors['email']) print 'class="error"'; ?> value="<?php if ($errors['email']) print $values['email']; ?>" type="email" /> </label><br />
+ <input name="email" <?php if ($errors['email']) print 'class="error"'; ?> value="<?php  print $values['email']; ?>" type="email" /> </label><br />
        
-    <label>  Дата рождения:<br /><input name="date" <?php if ($errors['date']) print 'class="error"'; ?> value="<?php if ($errors['date']) print $values['date']; ?>" type="date" /></label><br />
+    <label>  Дата рождения:<br /><input name="date" <?php if ($errors['date']) print 'class="error"'; ?> value="<?php  print $values['date']; ?>" type="date" /></label><br />
              
              Пол:<br /> 
              <label><input type="radio" checked="checked" name="gender" value="m" /> М</label>
@@ -76,7 +76,7 @@ if (!empty($messages)) {
                Биография:<br />
                <textarea name="biography" 
                          <?php if ($errors['biography']) print 'class="error"' ?>
-                         value="<?php if ($errors['biography']) print $values['biography']; ?>" ></textarea>
+                         value="<?php  print $values['biography']; ?>" ></textarea>
              </label><br />
              
              <br />
