@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
   $values = array();
   foreach ($parametrs as $it)
   {
-    //if(!empty($_COOKIE[$errorname]))
+    if(!empty($_COOKIE[$errorname]))
     $values[$it]=empty($_COOKIE[$it]);
   }
   /* $values['name'] = empty($_COOKIE['name']) ? '' : $_COOKIE['name'];
