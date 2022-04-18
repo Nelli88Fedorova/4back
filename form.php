@@ -45,7 +45,7 @@ if (!empty($messages)) {
     <div class="for">
     <h4><form action="" method="POST">
       <label> Имя:<br />
-      <input name="name" <?php if ($errors['name']) print 'class="error"' ?> value="<?php if ($errors['name']) print $values['name']; else print ""; ?>" /></label><br />
+      <input name="name" <?php if (!$errors['name']) print 'class="error"' ?> value="<?php if ($errors['name']) print $values['name']; else print ""; ?>" /></label><br />
 
  <label> e-mail:<br />
  <input name="email" <?php if ($errors['email']) print 'class="error"'; ?> value="<?php if ($errors['email']) print $values['email']; ?>" type="email" /> </label><br />
