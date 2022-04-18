@@ -30,13 +30,15 @@ input
 </head>
 <body>
 <?php
-if (!empty($messages)) {
-  print('<div id="messages">');
+if (!empty($messages))
+{
+  print('<div id="messages"><h4>');
   // Выводим все сообщения.
-  foreach ($messages as $message) {
+  foreach ($messages as $message) 
+  {
     print($message);
   }
-  print('</div>');
+  print('</h4></div>');
 }
 
 // Далее выводим форму отмечая элементы с ошибками классом error
@@ -45,7 +47,7 @@ if (!empty($messages)) {
     <div class="for">
     <h4><form action="" method="POST">
       <label> Имя:<br />
-      <input name="name" <?php if ($errors['name']) print 'class="error"' ?> value="<?php print $values['name']; ?>" /></label><br />
+      <input name="name" <?php if ($errors['name']) print 'class="error"'; ?> value="<?php print $values['name']; ?>" /></label><br />
 
  <label> e-mail:<br />
  <input name="email" <?php if ($errors['email']) print 'class="error"'; ?> value="<?php print $values['email']; ?>" type="email" /> </label><br />
