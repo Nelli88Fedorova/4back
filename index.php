@@ -2,40 +2,53 @@
 header('Content-Type: text/html; charset=UTF-8');
 if ($_SERVER['REQUEST_METHOD'] == 'GET') 
 {
-    $messages = array();
   if (!empty($_COOKIE['save'])) 
   {
     setcookie('save', '', 100000);
     $messages[] = 'Спасибо, результаты сохранены.';
   }
-
-   $parametrs=array('name', 'email','date','gender','hand','biography','syperpover');
+  $messages = array();
   $errors = array();
-  foreach ($parametrs as $it)
-  {
-    $errorname=$it .'_error';
-    if(!empty($_COOKIE['$errorname']))
-    $errors['$it']=empty($_COOKIE['$errorname']);
-  }
- 
-  $formassage=array('name'=>" Имя", 'email'=>" Электронная почта",'date'=>" Дата рождения",'gender'=>" Пол",'hand'=>" Конечности",'biography'=>" Биография",'syperpover'=>" Суперспособность");
-  foreach ($errors as $key =>$er)
- { 
-  $errorname=$key ."_error";
-  if ($er) 
-  { setcookie($errorname, '', time() - 3600);
-    if($er=='1') $messages[] = '<div class="error">Заполните поле'.(string)$formassage[$key].'.</div>';
-    else $messages[] = '<div class="error"> Недопустимые символы в поле'.(string)$formassage[$key].'! </div>';
-  }
- }
-
   $values = array();
-  foreach ($parametrs as $it)
-  {
-    $errorname=$it ."_error";
-    if(empty($_COOKIE[(string)$errorname]))
-    $values[(string)$it]=empty($_COOKIE[(string)$it]);
+
+  if(!empty($_COOKIE['name_error']))
+  $errors['name']=$_COOKIE['name_error'];
+
+  if ($errors['name']) 
+  { 
+    if($errors['name']=='1') $messages[] = '<div class="error">Заполните поле'.'Имя'.'.</div>';
+    else $messages[] = '<div class="error"> Недопустимые символы в поле'.'Имя'.'! </div>';
+    setcookie('name_error', '', time() - 3600);
   }
+  
+    if(!empty($_COOKIE['name_error'))
+      $values['name']=$_COOKIE['name'];
+
+  // $parametrs=array('name', 'email','date','gender','hand','biography','syperpover');
+  // foreach ($parametrs as $it)
+  // {
+  //   $errorname=$it .'_error';
+  //   if(!empty($_COOKIE['$errorname']))
+  //   $errors['$it']=empty($_COOKIE['$errorname']);
+  // }
+  //$formassage=array('name'=>" Имя", 'email'=>" Электронная почта",'date'=>" Дата рождения",'gender'=>" Пол",'hand'=>" Конечности",'biography'=>" Биография",'syperpover'=>" Суперспособность");
+//   foreach ($errors as $key =>$er)
+//  { 
+//   $errorname=$key ."_error";
+//   if ($er) 
+//   { setcookie($errorname, '', time() - 3600);
+//     if($er=='1') $messages[] = '<div class="error">Заполните поле'.(string)$formassage[$key].'.</div>';
+//     else $messages[] = '<div class="error"> Недопустимые символы в поле'.(string)$formassage[$key].'! </div>';
+//   }
+//  }
+  //foreach ($parametrs as $it)
+  // {
+  //   $errorname=$it ."_error";
+  //   if(empty($_COOKIE[(string)$errorname]))
+  //   $values[(string)$it]=empty($_COOKIE[(string)$it]);
+  // }
+
+
   /* $values['name'] = empty($_COOKIE['name']) ? '' : $_COOKIE['name'];
   $values['email'] = empty($_COOKIE['email']) ? '' : $_COOKIE['email'];
   $values['date'] = empty($_COOKIE['date']) ? '' : $_COOKIE['date'];
@@ -67,35 +80,59 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
  include('form.php');
 }
 else {
-   $formdata=array(
-    'name'=>$_POST['name'],
-    'email'=>$_POST['email'],
-    'date'=>$_POST['date'],
-    'gender'=>$_POST['gender'],
-    'hand'=>$_POST['hand'],
-    'biography'=>$_POST['biography'],
-    'check'=>$_POST['check'],
-    'syperpover'=>implode(',',$_POST['syperpover']),
-     );
-  // Проверяем ошибки.
+  $name=$_POST['name'];
+  $email=$_POST['email'];
+  $date=$_POST['date'];
+  $gender=$_POST['gender'];
+  $hand=$_POST['hand'];
+  $biography=$_POST['biography'];
+  $check=$_POST['check'];
+  $syperpover=implode(',',$_POST['syperpover']);
   $errors = FALSE;
-  foreach ($formdata as  $key =>$v)
+ 
+   if (empty($name))
  {
-  $errorname=$key ."_error";
- if (empty($v))
- {
-    setcookie($errorname, '1', time() + 24 * 60 * 60);
+    setcookie('name_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
   else if (preg_match("/[^a-zA-Z0-9\-_]+/",$v))
   {
-    setcookie( $errorname, '2', time() + 24 * 60 * 60);
+    setcookie( 'name_error', '2', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
   else {
-    setcookie((string)$key, (string)$v, time() + 30 * 24 * 60 * 60);
+    setcookie('name', $name, time() + 30 * 24 * 60 * 60);
   }
- }
+
+//    $formdata=array(
+//     'name'=>$_POST['name'],
+//     'email'=>$_POST['email'],
+//     'date'=>$_POST['date'],
+//     'gender'=>$_POST['gender'],
+//     'hand'=>$_POST['hand'],
+//     'biography'=>$_POST['biography'],
+//     'check'=>$_POST['check'],
+//     'syperpover'=>implode(',',$_POST['syperpover']),
+//      );
+//   // Проверяем ошибки.
+//   $errors = FALSE;
+//   foreach ($formdata as  $key =>$v)
+//  {
+//   $errorname=$key ."_error";
+//  if (empty($v))
+//  {
+//     setcookie($errorname, '1', time() + 24 * 60 * 60);
+//     $errors = TRUE;
+//   }
+//   else if (preg_match("/[^a-zA-Z0-9\-_]+/",$v))
+//   {
+//     setcookie( $errorname, '2', time() + 24 * 60 * 60);
+//     $errors = TRUE;
+//   }
+//   else {
+//     setcookie((string)$key, (string)$v, time() + 30 * 24 * 60 * 60);
+//   }
+//  }
 
   if ($errors) {
     header('Location: index.php');
@@ -109,33 +146,26 @@ else {
     setcookie('hand_error', '',time() - 3600);
     setcookie('biography_error', '',time() - 3600);
     setcookie('syperpover_error', '',time() - 3600);
-   }
-
-  $name=$_POST['name'];
-  $email=$_POST['email'];
-  $date=$_POST['date'];
-  $gender=$_POST['gender'];
-  $hand=$_POST['hand'];
-  $biography=$_POST['biography'];
-  $check=$_POST['check'];
-  $syperpover=implode(',',$_POST['syperpover']);
-  
-  $user='u47586'; $pass='3927785';
-  $db=new PDO('mysql:host=localhost;dbname=u47586',$user,$pass, array(PDO::ATTR_PERSISTENT=>true));
-  
-  try{
+    
+    
+    
+    $user='u47586'; $pass='3927785';
+    $db=new PDO('mysql:host=localhost;dbname=u47586',$user,$pass, array(PDO::ATTR_PERSISTENT=>true));
+    
+    try{
       $stmt=$db->prepare("INSERT INTO MainData SET name = ?, email = ?, age=?, gender=?, numberOfLimb=?, biography=?");
       $stmt->execute(array($name, $email,$date, $gender,$hand, $biography));
-  
+      
       $super=$db->prepare("INSERT INTO Superpovers SET superpower=?");
       $super->execute(array($syperpover));
-  }
-  catch(PDOException $e)
-  {
+    }
+    catch(PDOException $e)
+    {
       print('Error:'.$e->GetMessage());
       exit();
+    }
+    
+    setcookie('save', '1');
+    header('Location: index.php');
   }
-
-  setcookie('save', '1');
-  header('Location: index.php');
 }
