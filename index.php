@@ -14,25 +14,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
   foreach ($parametrs as $it)
   {
     $errorname=$it .'_error';
-    if(!empty($_COOKIE[$errorname]))
-    $errors[$it]=empty($_COOKIE[$errorname]);
+    if(!empty($_COOKIE['$errorname']))
+    $errors['$it']=empty($_COOKIE['$errorname']);
   }
+ 
   $formassage=array('name'=>" Имя", 'email'=>" Электронная почта",'date'=>" Дата рождения",'gender'=>" Пол",'hand'=>" Конечности",'biography'=>" Биография",'syperpover'=>" Суперспособность");
   foreach ($errors as $key =>$er)
  { 
   $errorname=$key ."_error";
   if ($er) 
   { setcookie($errorname, '', time() - 3600);
-    if($er=='1') $messages[] = '<div class="error">Заполните поле'.$formassage[$key].'.</div>';
-    else $messages[] = '<div class="error"> Недопустимые символы в поле'.$formassage[$key].'! </div>';
+    if($er=='1') $messages[] = '<div class="error">Заполните поле'.(string)$formassage[$key].'.</div>';
+    else $messages[] = '<div class="error"> Недопустимые символы в поле'.(string)$formassage[$key].'! </div>';
   }
  }
 
   $values = array();
   foreach ($parametrs as $it)
   {
-    if(empty($_COOKIE[$errorname]))
-    $values[$it]=empty($_COOKIE[$it]);
+    $errorname=$it ."_error";
+    if(empty($_COOKIE[(string)$errorname]))
+    $values[(string)$it]=empty($_COOKIE[(string)$it]);
   }
   /* $values['name'] = empty($_COOKIE['name']) ? '' : $_COOKIE['name'];
   $values['email'] = empty($_COOKIE['email']) ? '' : $_COOKIE['email'];
@@ -46,19 +48,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
   foreach ($errors as $key =>$er)
   {
     print('<div> Errors: ');
-    print('key: '.$key . ' value: '.$er);
+    print('key: '.(string)$key . ' value: '.(string)$er);
     print('</div>');
   }
   foreach ($values as $key =>$er)
   {
     print('<div>Values: ');
-    print('key: '.$key . ' value: '.$er);
+    print('key: '.(string)$key . ' value: '.(string)$er);
     print('</div>');
   }
   foreach ($messages as $er)
   {
     print('<div>Messages: ');
-    print($er);
+    print((string)$er);
     print('</div>');
   }
 
