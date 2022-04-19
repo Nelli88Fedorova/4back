@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
     setcookie('name_error', '', time() - 3600);
   }
   
-    if(!empty($_COOKIE['name_error'))
+    if(!empty($_COOKIE['name_error'])
       $values['name']=$_COOKIE['name'];
 
   // $parametrs=array('name', 'email','date','gender','hand','biography','syperpover');
