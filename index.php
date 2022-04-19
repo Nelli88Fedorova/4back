@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
   $values = array();
   foreach ($parametrs as $it)
   {
-    if(!empty($_COOKIE[$errorname]))
+    if(empty($_COOKIE[$errorname]))
     $values[$it]=empty($_COOKIE[$it]);
   }
   /* $values['name'] = empty($_COOKIE['name']) ? '' : $_COOKIE['name'];
@@ -42,6 +42,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
   $values['biography'] = empty($_COOKIE['biography']) ? '' : $_COOKIE['biography'];
   $values['syperpover'] = empty($_COOKIE['syperpover']) ? '' : $_COOKIE['syperpover'];
   */
+
+  foreach ($errors as $key =>$er)
+  {
+    print('<div> Errors: ');
+    print('key: '.$key . ' value: '.$er);
+    print('</div>');
+  }
+  foreach ($values as $key =>$er)
+  {
+    print('<div>Values: ');
+    print('key: '.$key . ' value: '.$er);
+    print('</div>');
+  }
+  foreach ($messages as $er)
+  {
+    print('<div>Messages: ');
+    print($er);
+    print('</div>');
+  }
 
  include('form.php');
 }
