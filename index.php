@@ -2,27 +2,28 @@
 header('Content-Type: text/html; charset=UTF-8');
 if ($_SERVER['REQUEST_METHOD'] == 'GET') 
 {
-  if (!empty($_COOKIE['save'])) 
+  if (isset($_COOKIE['save'])) 
   {
-    setcookie('save', '', 100000);
+    setcookie('save', '', time()- 100000);
     $messages[] = 'Спасибо, результаты сохранены.';
   }
   $messages = array();
   $errors = array();
-  $values = array();
-
-  if(!empty($_COOKIE['name_error']))
+  
+  if(isset($_COOKIE['name_error']))
   $errors['name']=$_COOKIE['name_error'];
-
+  
   if ($errors['name']) 
   { 
-    if($errors['name']=='1') $messages[] = '<div class="error">Заполните поле'.'Имя'.'.</div>';
-    else $messages[] = '<div class="error"> Недопустимые символы в поле'.'Имя'.'! </div>';
+    if((int)$errors['name']==1) $messages[] = '<div class="error">Заполните поле'.'Имя'.'.</div>';
+    else if((int)$errors['name']==2) $messages[] = '<div class="error"> Недопустимые символы в поле'.'Имя'.'! </div>';
     setcookie('name_error', '', time() - 3600);
   }
   
-    if(!empty($_COOKIE['name_error'])
-      $values['name']=$_COOKIE['name'];
+  $values = array();
+  if((int)$errors['name']==2)
+   { $values['name']=$_COOKIE['name'];}
+   else $values['name']='';
 
   // $parametrs=array('name', 'email','date','gender','hand','biography','syperpover');
   // foreach ($parametrs as $it)
@@ -95,12 +96,14 @@ else {
     setcookie('name_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else if (preg_match("/[^a-zA-Z0-9\-_]+/",$v))
+  else if (preg_match("/[\<|\>]/",$name))
   {
     setcookie( 'name_error', '2', time() + 24 * 60 * 60);
+    setcookie('name', $name, time() + 30 * 24 * 60 * 60);
     $errors = TRUE;
   }
   else {
+    setcookie('name', '', time() -3600);
     setcookie('name', $name, time() + 30 * 24 * 60 * 60);
   }
 
