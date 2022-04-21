@@ -45,10 +45,10 @@ if (!empty($messages)) {
     <div class="for">
     <h4><form action="" method="POST">
       <label> Имя:<br />
-      <input name="name" <?php if (isset($errors['name']) && $errors['name']==2) print 'style="color:red"' else print 'style="color:black"' ; ?> value="<?php if (isset($errors['name'])) print $values['name']; ?>" /></label><br />
+      <input name="name" <?php if (isset($errors['name']) && $errors['name']==2) print 'style="color:red"'; else print 'style="color:black"'; ?> value="<?php if (isset($errors['name'])) print $values['name']; ?>" /></label><br />
 
  <label> e-mail:<br />
- <input name="email" <?php if (isset($errors['email']) && $errors['email']==2) print 'style="color:red"' else print 'style="color:black"' ;?> value="<?php if (isset($errors['email'])) print $values['email']; ?>" type="email" /> </label><br />
+ <input name="email" <?php if (isset($errors['email']) && $errors['email']==2) print 'style="color:red"'; else print 'style="color:black"';?> value="<?php if (isset($errors['email'])) print $values['email']; ?>" type="email" /> </label><br />
        
     <label>  Дата рождения:<br /><input name="date"  value="<?php if (isset($errors['date'])) print $values['date']; ?>" type="date" /></label><br />
              
@@ -75,7 +75,7 @@ if (!empty($messages)) {
        <label>
                Биография:<br />
                <textarea name="biography" 
-                         <?php if (isset($errors['biography']) && $errors['biography']==2) print 'style="color:red"' else print 'style="color:black"' ; ?>
+                         <?php if (isset($errors['biography']) && $errors['biography']==2) print 'style="color:red"'; else print 'style="color:black"'; ?>
                          value="<?php if (isset($errors['biography'])) print $values['biography']; ?>" ></textarea>
              </label><br />
              
