@@ -38,9 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
   $formassage=array('name'=>" Имя", 'email'=>" Электронная почта",'date'=>" Дата рождения",'gender'=>" Пол",'hand'=>" Конечности",'biography'=>" Биография",'syperpover'=>" Суперспособность");
   foreach ($errors as $name =>$val)
  { 
-  $errorname=$key ."_error";
-  if (isset(errors[$name]) )
-  {  if((int)$errors[$name]==1) $messages[] = '<div style="color:red">Заполните поле'.(string)$formassage[$name].'.</div>';
+   if (isset($name))
+   {  
+     $errorname=$key ."_error";
+     if((int)$errors[$name]==1) $messages[] = '<div style="color:red">Заполните поле'.(string)$formassage[$name].'.</div>';
     else if((int)$errors[$name]==2) $messages[] = '<div style="color:red"> Недопустимые символы в поле'.(string)$formassage[$name].'! </div>';
     setcookie($errorname, '', time() - 3600);
   }
@@ -49,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
   {
     $errorname=$name ."_error";
     if(isset($errors[$name]))
-  if((int)$errors[$name]==2)
+    if((int)$errors[$name]==2)
    { $values[$name]=$_COOKIE[$name];}
    else $values[$name]='';
   }
