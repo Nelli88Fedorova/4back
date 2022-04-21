@@ -12,15 +12,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
   
   if(isset($_COOKIE['name_error']))
   $errors['name']=$_COOKIE['name_error'];
-  
-  if ($errors['name']) 
+  // Undefined index: name on line 16
+  if (isset($errors['name'])) 
   { 
-    if((int)$errors['name']==1) $messages[] = '<div class="error">Заполните поле'.'Имя'.'.</div>';
-    else if((int)$errors['name']==2) $messages[] = '<div class="error"> Недопустимые символы в поле'.'Имя'.'! </div>';
+    if((int)$errors['name']==1) $messages[] = '<div class="error">Заполните поле'.' Имя'.'.</div>';
+    else if((int)$errors['name']==2) $messages[] = '<div class="error"> Недопустимые символы в поле'.' Имя'.'! </div>';
     setcookie('name_error', '', time() - 3600);
   }
-  
+  // Undefined index: name on line 24
   $values = array();
+  if(isset($errors['name']))
   if((int)$errors['name']==2)
    { $values['name']=$_COOKIE['name'];}
    else $values['name']='';
@@ -96,7 +97,7 @@ else {
     setcookie('name_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else if (preg_match("/[\<|\>]/",$name))
+  else if (preg_match("/[\<|\>\'\"\[\]\\\/]/",$name))//Yes <> |  No /\"'[]
   {
     setcookie( 'name_error', '2', time() + 24 * 60 * 60);
     setcookie('name', $name, time() + 30 * 24 * 60 * 60);
