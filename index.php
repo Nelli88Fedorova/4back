@@ -29,14 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
      $errorname=$name ."_error";
      if((int)$errors[$name]==1) $messages[$name] = '<div style="color:red">Заполните поле'.(string)$formassage[$name].'.</div>';
     else if((int)$errors[$name]==2) $messages[$name] = '<div style="color:red"> Недопустимые символы в поле'.(string)$formassage[$name].'! </div>';
-    //setcookie($errorname, '', time() - 3600);
+    setcookie($errorname, '', time() - 3600);
   }
  }
   foreach ($parametrs as $name)
   {
-    $errorname=$name ."_error";
-    if(isset($errors[$name]))
-    if((int)$errors[$name]==2)
+    if(isset($values[$name]))
    { $values[$name]=$_COOKIE[$name];}
    else $values[$name]='';
   }
@@ -85,7 +83,7 @@ else {
   else {
     setcookie($errorname, '', time() - 3600);
    // setcookie($key, '', time() -3600);
-    setcookie($key, $name, time() + 30 * 24 * 60 * 60);
+   setcookie($key, $name, time() + 30 * 24 * 60 * 60);
   }
  }
 
