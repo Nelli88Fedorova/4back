@@ -97,7 +97,7 @@ else {
     setcookie('name_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else if (preg_match("/[\<|\>\'\"\[\]\\\/]/",$name))//Yes <> |  No /\"'[]
+  else if (preg_match("/[^а-яА-ЯёЁa-zA-Z0-9\-_]+/",$name))//Yes <> |  No /\"'[]    "/[ \<|\>'\"[\]\\\/ ]/"
   {
     setcookie( 'name_error', '2', time() + 24 * 60 * 60);
     setcookie('name', $name, time() + 30 * 24 * 60 * 60);
