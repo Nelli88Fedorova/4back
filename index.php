@@ -56,11 +56,7 @@ else {
     'name'=>$_POST['name'],
     'email'=>$_POST['email'],
     'date'=>$_POST['date'],
-    'gender'=>$_POST['gender'],
-    'hand'=>$_POST['hand'],
     'biography'=>$_POST['biography'],
-    'check'=>$_POST['check'],
-    'syperpover'=>implode(',',$_POST['syperpover']),
      );
   // Проверяем ошибки.
   $errors = FALSE;
@@ -72,13 +68,13 @@ else {
     setcookie($errorname, '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else if ($key=='email' && filter_var($email, FILTER_VALIDATE_EMAIL) == false)
+  else if ($key=='email' && filter_var($email, FILTER_VALIDATE_EMAIL) !== false)
   {
     setcookie( $errorname, '2', time() + 24 * 60 * 60);
     setcookie($key, $v, time() + 30 * 24 * 60 * 60);
     $errors = TRUE;
   }
-  else if (preg_match("/[^а-яА-ЯёЁa-zA-Z0-9\-_\@]+/",$v) ) 
+  else if (preg_match("/[^а-яА-ЯёЁa-zA-Z0-9\@\-_]+/",$v) ) 
   {
     setcookie( $errorname, '2', time() + 24 * 60 * 60);
     setcookie($key, $v, time() + 30 * 24 * 60 * 60);
