@@ -91,52 +91,55 @@ else {
   $check=$_POST['check'];
   $syperpover=implode(',',$_POST['syperpover']);
   $errors = FALSE;
- 
-   if (empty($name))
- {
-    setcookie('name_error', '1', time() + 24 * 60 * 60);
-    $errors = TRUE;
-  }
-  else if (preg_match("/[^а-яА-ЯёЁa-zA-Z0-9\-_]+/",$name))//Yes <> |  No /\"'[]    "/[ \<|\>'\"[\]\\\/ ]/"
-  {
-    setcookie( 'name_error', '2', time() + 24 * 60 * 60);
-    setcookie('name', $name, time() + 30 * 24 * 60 * 60);
-    $errors = TRUE;
-  }
-  else {
-    setcookie('name', '', time() -3600);
-    setcookie('name', $name, time() + 30 * 24 * 60 * 60);
-  }
+ //___________________________________________РАБОТАЕТ_________________________
+//    if (empty($name))
+//  {
+//     setcookie('name_error', '1', time() + 24 * 60 * 60);
+//     $errors = TRUE;
+//   }
+//   else if (preg_match("/[^а-яА-ЯёЁa-zA-Z0-9\-_]+/",$name)) //недопустимые знаки : <> | /\  "'[]  
+//   {
+//     setcookie( 'name_error', '2', time() + 24 * 60 * 60);
+//     setcookie('name', $name, time() + 30 * 24 * 60 * 60);
+//     $errors = TRUE;
+//   }
+//   else {
+//     setcookie('name', '', time() -3600);
+//     setcookie('name', $name, time() + 30 * 24 * 60 * 60);
+//   }
+//___________________________________________________________________________________
 
-//    $formdata=array(
-//     'name'=>$_POST['name'],
-//     'email'=>$_POST['email'],
+   $formdata=array(
+    'name'=>$_POST['name'],
+    'email'=>$_POST['email'],
 //     'date'=>$_POST['date'],
 //     'gender'=>$_POST['gender'],
 //     'hand'=>$_POST['hand'],
 //     'biography'=>$_POST['biography'],
 //     'check'=>$_POST['check'],
 //     'syperpover'=>implode(',',$_POST['syperpover']),
-//      );
-//   // Проверяем ошибки.
-//   $errors = FALSE;
-//   foreach ($formdata as  $key =>$v)
-//  {
-//   $errorname=$key ."_error";
-//  if (empty($v))
-//  {
-//     setcookie($errorname, '1', time() + 24 * 60 * 60);
-//     $errors = TRUE;
-//   }
-//   else if (preg_match("/[^a-zA-Z0-9\-_]+/",$v))
-//   {
-//     setcookie( $errorname, '2', time() + 24 * 60 * 60);
-//     $errors = TRUE;
-//   }
-//   else {
-//     setcookie((string)$key, (string)$v, time() + 30 * 24 * 60 * 60);
-//   }
-//  }
+     );
+  // Проверяем ошибки.
+  $errors = FALSE;
+  foreach ($formdata as  $key =>$v)
+ {
+  $errorname=$key ."_error";
+ if (empty($v))
+ {
+    setcookie($errorname, '1', time() + 24 * 60 * 60);
+    $errors = TRUE;
+  }
+  else if (preg_match("/[^а-яА-ЯёЁa-zA-Z0-9\-_]+/",$v))
+  {
+    setcookie( $errorname, '2', time() + 24 * 60 * 60);
+    setcookie($key, $v, time() + 30 * 24 * 60 * 60);
+    $errors = TRUE;
+  }
+  else {
+    setcookie($key, '', time() -3600);
+    setcookie($key, $name, time() + 30 * 24 * 60 * 60);
+  }
+ }
 
   if ($errors) {
     header('Location: index.php');
