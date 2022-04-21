@@ -10,23 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
   $messages = array();
   $errors = array();
   $values = array();
-  //___________________________________________РАБОТАЕТ_________________________
-  // if(isset($_COOKIE['name_error']))
-  // $errors['name']=$_COOKIE['name_error'];
-
-  // if (isset($errors['name'])) 
-  // { 
-  //   if((int)$errors['name']==1) $messages[] = '<div class="error">Заполните поле'.' Имя'.'.</div>';
-  //   else if((int)$errors['name']==2) $messages[] = '<div class="error"> Недопустимые символы в поле'.' Имя'.'! </div>';
-  //   setcookie('name_error', '', time() - 3600);
-  // }
-
-  // if(isset($errors['name']))
-  // if((int)$errors['name']==2)
-  //  { $values['name']=$_COOKIE['name'];}
-  //  else $values['name']='';
-//________________________________________________________________________________
-
+ 
   $parametrs=array('name', 'email','date','gender','hand','biography','syperpover');
   foreach ($parametrs as $name)
   {
@@ -55,27 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
    else $values[$name]='';
   }
 
-  //__________________________________
-
-  foreach ($errors as $key =>$er)
-  {
-    print('<div> Errors: ');
-    print('key: '.(string)$key . ' value: '.(string)$er);
-    print('</div>');
-  }
-  foreach ($values as $key =>$er)
-  {
-    print('<div>Values: ');
-    print('key: '.(string)$key . ' value: '.(string)$er);
-    print('</div>');
-  }
-  foreach ($messages as $er)
-  {
-    print('<div>Messages: ');
-    print((string)$er);
-    print('</div>');
-  }
-
  include('form.php');
 }
 else {
@@ -88,23 +51,6 @@ else {
   $check=$_POST['check'];
   $syperpover=implode(',',$_POST['syperpover']);
   $errors = FALSE;
- //___________________________________________РАБОТАЕТ_________________________
-//    if (empty($name))
-//  {
-//     setcookie('name_error', '1', time() + 24 * 60 * 60);
-//     $errors = TRUE;
-//   }
-//   else if (preg_match("/[^а-яА-ЯёЁa-zA-Z0-9\-_]+/",$name)) //недопустимые знаки : <> | /\  "'[]  
-//   {
-//     setcookie( 'name_error', '2', time() + 24 * 60 * 60);
-//     setcookie('name', $name, time() + 30 * 24 * 60 * 60);
-//     $errors = TRUE;
-//   }
-//   else {
-//     setcookie('name', '', time() -3600);
-//     setcookie('name', $name, time() + 30 * 24 * 60 * 60);
-//   }
-//___________________________________________________________________________________
 
    $formdata=array(
     'name'=>$_POST['name'],
@@ -126,7 +72,7 @@ else {
     setcookie($errorname, '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else if (preg_match("/[^а-яА-ЯёЁa-zA-Z0-9\-_]+/",$v))
+  else if (preg_match("/[^а-яА-ЯёЁa-zA-Z0-9\-_\@]+/",$v))
   {
     setcookie( $errorname, '2', time() + 24 * 60 * 60);
     setcookie($key, $v, time() + 30 * 24 * 60 * 60);
