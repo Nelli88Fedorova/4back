@@ -9,56 +9,52 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
   }
   $messages = array();
   $errors = array();
-  
-  if(isset($_COOKIE['name_error']))
-  $errors['name']=$_COOKIE['name_error'];
-  // Undefined index: name on line 16
-  if (isset($errors['name'])) 
-  { 
-    if((int)$errors['name']==1) $messages[] = '<div class="error">Заполните поле'.' Имя'.'.</div>';
-    else if((int)$errors['name']==2) $messages[] = '<div class="error"> Недопустимые символы в поле'.' Имя'.'! </div>';
-    setcookie('name_error', '', time() - 3600);
-  }
-  // Undefined index: name on line 24
   $values = array();
-  if(isset($errors['name']))
-  if((int)$errors['name']==2)
-   { $values['name']=$_COOKIE['name'];}
-   else $values['name']='';
+  //___________________________________________РАБОТАЕТ_________________________
+  // if(isset($_COOKIE['name_error']))
+  // $errors['name']=$_COOKIE['name_error'];
 
-  // $parametrs=array('name', 'email','date','gender','hand','biography','syperpover');
-  // foreach ($parametrs as $it)
-  // {
-  //   $errorname=$it .'_error';
-  //   if(!empty($_COOKIE['$errorname']))
-  //   $errors['$it']=empty($_COOKIE['$errorname']);
-  // }
-  //$formassage=array('name'=>" Имя", 'email'=>" Электронная почта",'date'=>" Дата рождения",'gender'=>" Пол",'hand'=>" Конечности",'biography'=>" Биография",'syperpover'=>" Суперспособность");
-//   foreach ($errors as $key =>$er)
-//  { 
-//   $errorname=$key ."_error";
-//   if ($er) 
-//   { setcookie($errorname, '', time() - 3600);
-//     if($er=='1') $messages[] = '<div class="error">Заполните поле'.(string)$formassage[$key].'.</div>';
-//     else $messages[] = '<div class="error"> Недопустимые символы в поле'.(string)$formassage[$key].'! </div>';
-//   }
-//  }
-  //foreach ($parametrs as $it)
-  // {
-  //   $errorname=$it ."_error";
-  //   if(empty($_COOKIE[(string)$errorname]))
-  //   $values[(string)$it]=empty($_COOKIE[(string)$it]);
+  // if (isset($errors['name'])) 
+  // { 
+  //   if((int)$errors['name']==1) $messages[] = '<div class="error">Заполните поле'.' Имя'.'.</div>';
+  //   else if((int)$errors['name']==2) $messages[] = '<div class="error"> Недопустимые символы в поле'.' Имя'.'! </div>';
+  //   setcookie('name_error', '', time() - 3600);
   // }
 
+  // if(isset($errors['name']))
+  // if((int)$errors['name']==2)
+  //  { $values['name']=$_COOKIE['name'];}
+  //  else $values['name']='';
+//________________________________________________________________________________
 
-  /* $values['name'] = empty($_COOKIE['name']) ? '' : $_COOKIE['name'];
-  $values['email'] = empty($_COOKIE['email']) ? '' : $_COOKIE['email'];
-  $values['date'] = empty($_COOKIE['date']) ? '' : $_COOKIE['date'];
-  $values['gender'] = empty($_COOKIE['gender']) ? '' : $_COOKIE['gender'];
-  $values['hand'] = empty($_COOKIE['hand']) ? '' : $_COOKIE['hand'];
-  $values['biography'] = empty($_COOKIE['biography']) ? '' : $_COOKIE['biography'];
-  $values['syperpover'] = empty($_COOKIE['syperpover']) ? '' : $_COOKIE['syperpover'];
-  */
+  $parametrs=array('name', 'email','date','gender','hand','biography','syperpover');
+  foreach ($parametrs as $name)
+  {
+    $errorname=$name .'_error';
+    if(isset($_COOKIE[$errorname]))
+  $errors[$name]=$_COOKIE[$errorname];
+  }
+
+  $formassage=array('name'=>" Имя", 'email'=>" Электронная почта",'date'=>" Дата рождения",'gender'=>" Пол",'hand'=>" Конечности",'biography'=>" Биография",'syperpover'=>" Суперспособность");
+  foreach ($errors as $name =>$val)
+ { 
+  $errorname=$key ."_error";
+  if (isset(errors[$name]) )
+  {  if((int)$errors[$name]==1) $messages[] = '<div style="color:red">Заполните поле'.(string)$formassage[$name].'.</div>';
+    else if((int)$errors[$name]==2) $messages[] = '<div style="color:red"> Недопустимые символы в поле'.(string)$formassage[$name].'! </div>';
+    setcookie($errorname, '', time() - 3600);
+  }
+ }
+  foreach ($parametrs as $name)
+  {
+    $errorname=$name ."_error";
+    if(isset($errors[$name]))
+  if((int)$errors[$name]==2)
+   { $values[$name]=$_COOKIE[$name];}
+   else $values[$name]='';
+  }
+
+  //__________________________________
 
   foreach ($errors as $key =>$er)
   {
@@ -112,12 +108,12 @@ else {
    $formdata=array(
     'name'=>$_POST['name'],
     'email'=>$_POST['email'],
-//     'date'=>$_POST['date'],
-//     'gender'=>$_POST['gender'],
-//     'hand'=>$_POST['hand'],
-//     'biography'=>$_POST['biography'],
-//     'check'=>$_POST['check'],
-//     'syperpover'=>implode(',',$_POST['syperpover']),
+    'date'=>$_POST['date'],
+    'gender'=>$_POST['gender'],
+    'hand'=>$_POST['hand'],
+    'biography'=>$_POST['biography'],
+    'check'=>$_POST['check'],
+    'syperpover'=>implode(',',$_POST['syperpover']),
      );
   // Проверяем ошибки.
   $errors = FALSE;
