@@ -45,7 +45,7 @@ if (!empty($messages)) {
     <div class="for">
     <h4><form action="" method="POST">
       <label> Имя:<br />
-      <input name="name" <?php if (isset($errors['name']) && $errors['name']==2) print 'class="error"'; ?> value="<?php if (isset($errors['name'])) print $values['name']; ?>" /></label><br />
+      <input name="name" <?php if (isset($errors['name']) && $errors['name']==2) print 'style="color:red"'; ?> value="<?php if (isset($errors['name'])) print $values['name']; ?>" /></label><br />
 
  <label> e-mail:<br />
  <input name="email" <?php if ($errors['email']) print 'color="red"'; ?> value="<?php print $values['email']; ?>" type="email" /> </label><br />
