@@ -25,8 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
    if (isset($name))
    {  
      $errorname=$name ."_error";
-     if((int)$errors[$name]==1) $messages[] = '<div style="color:red">Заполните поле'.(string)$formassage[$name].'.</div>';
-    else if((int)$errors[$name]==2) $messages[] = '<div style="color:red"> Недопустимые символы в поле'.(string)$formassage[$name].'! </div>';
+     if((int)$errors[$name]==1) $messages[$name] = '<div style="color:red">Заполните поле'.(string)$formassage[$name].'.</div>';
+    else if((int)$errors[$name]==2) $messages[$name] = '<div style="color:red"> Недопустимые символы в поле'.(string)$formassage[$name].'! </div>';
     setcookie($errorname, '', time() - 3600);
   }
  }
