@@ -44,25 +44,31 @@ input
 ?>
     <div class="for">
     <h4><form action="" method="POST">
+<?php if (isset($messages['name'])) print($messages['name']); ?>
       <label> Имя:<br />
       <input name="name" <?php if (isset($errors['name']) && $errors['name']==2) print 'style="color:red"'; else print 'style="color:black"'; ?> value="<?php if (isset($errors['name'])) print $values['name']; ?>" /></label><br />
-<?php if (isset($messages['name'])) print($messages['name']); ?>
- <label> e-mail:<br />
- <input name="email" <?php if (isset($errors['email']) && $errors['email']==2) print 'style="color:red"'; else print 'style="color:black"';?> value="<?php if (isset($errors['email'])) print $values['email']; ?>" type="email" /> </label><br />
+ 
+<?php if (isset($messages['email'])) print($messages['email']); ?>
+      <label> e-mail:<br />
+   <input name="email" <?php if (isset($errors['email']) && $errors['email']==2) print 'style="color:red"'; else print 'style="color:black"';?> value="<?php if (isset($errors['email'])) print $values['email']; ?>" type="email" /> </label><br />
        
+<?php if (isset($messages['date'])) print($messages['date']); ?>
     <label>  Дата рождения:<br /><input name="date"  value="<?php if (isset($errors['date'])) print $values['date']; ?>" type="date" /></label><br />
              
+<?php if (isset($messages['gender'])) print($messages['gender']); ?>
              Пол:<br /> 
              <label><input type="radio" checked="checked" name="gender" value="m" /> М</label>
              <label><input type="radio" name="gender" value="w" /> Ж</label><br />
        
+<?php if (isset($messages['hand'])) print($messages['hand']); ?>
        Количество конечностей:<br />
              <label><input type="radio" checked="checked" name="hand" value="1" />1</label>
              <label><input type="radio" name="hand" value="2" /> 2</label>
              <label><input type="radio" name="hand" value="3" /> 3</label>
              <label><input type="radio" name="hand" value="4" /> 4</label>
              <label><input type="radio" name="hand" value="5" /> 5</label>
-       
+
+<?php if (isset($messages['syperpover'])) print($messages['syperpover']); ?>             
              <label>
                Сверхспособности:<br />
                <select name="syperpover[]" multiple>
@@ -73,6 +79,8 @@ input
              </label><br />
        
        <label>
+      
+<?php if (isset($messages['biography'])) print($messages['biography']); ?>
                Биография:<br />
                <textarea name="biography" 
                          <?php if (isset($errors['biography']) && $errors['biography']==2) print 'style="color:red"'; else print 'style="color:black"'; ?>
