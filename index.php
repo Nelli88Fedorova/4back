@@ -4,12 +4,12 @@
 header('Content-Type: text/html; charset=UTF-8');
 if ($_SERVER['REQUEST_METHOD'] == 'GET') 
 {
+  $messages = array();
   if (isset($_COOKIE['save'])) 
   {
     setcookie('save', '', time()- 100000);
     $messages['save'] = '<div style="color:green"> Спасибо, результаты сохранены.</div>';
   }
-  $messages = array();
   $errors = array();
   $values = array();
  
@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
      $errorname=$name ."_error";
      if((int)$errors[$name]==1) $messages[$name] = '<div style="color:red">Заполните поле'.(string)$formassage[$name].'.</div>';
     else if((int)$errors[$name]==2) $messages[$name] = '<div style="color:red"> Недопустимые символы в поле'.(string)$formassage[$name].'! </div>';
-    setcookie($errorname, '', time() - 3600);
+    //setcookie($errorname, '', time() - 3600);
   }
  }
   foreach ($parametrs as $name)
@@ -83,7 +83,8 @@ else {
     $errors = TRUE;
   }
   else {
-    setcookie($key, '', time() -3600);
+    setcookie($errorname, '', time() - 3600);
+   // setcookie($key, '', time() -3600);
     setcookie($key, $name, time() + 30 * 24 * 60 * 60);
   }
  }
