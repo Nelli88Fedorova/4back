@@ -1,11 +1,13 @@
 <?php
+//вывод сообщения о том что форма успешно отправлена
+// при одной ошибке все остальные удачно заполненные поля очищаются
 header('Content-Type: text/html; charset=UTF-8');
 if ($_SERVER['REQUEST_METHOD'] == 'GET') 
 {
   if (isset($_COOKIE['save'])) 
   {
     setcookie('save', '', time()- 100000);
-    $messages[] = 'Спасибо, результаты сохранены.';
+    $messages['save'] = '<div style="color:green"> Спасибо, результаты сохранены.</div>';
   }
   $messages = array();
   $errors = array();
@@ -74,7 +76,7 @@ else {
     setcookie($key, $v, time() + 30 * 24 * 60 * 60);
     $errors = TRUE;
   }
-  else if ($key !='email' && preg_match("/[^а-яА-ЯёЁa-zA-Z0-9\@\-_]+/",$v) ) 
+  else if ($key !='email' && preg_match("/[^а-яА-ЯёЁa-zA-Z0-9\ \-_]+/",$v) ) 
   {
     setcookie( $errorname, '2', time() + 24 * 60 * 60);
     setcookie($key, $v, time() + 30 * 24 * 60 * 60);
