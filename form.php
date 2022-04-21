@@ -24,36 +24,23 @@ input
  {
   font-size: x-large;
  }
-
 </style>
 
 </head>
 <body>
-<?php
-// if (!empty($messages)) {
-//   print('<div id="messages">');
-//   // Выводим все сообщения.
-//   foreach ($messages as $message) {
-//     print($message);
-//   }
-//   print('</div>');
-// }
-
-// Далее выводим форму отмечая элементы с ошибками классом error
-// и задавая начальные значения элементов ранее сохраненными.
-?>
     <div class="for">
     <h4><form action="" method="POST">
+<?php if (isset($messages['save'])) print($messages['save']); ?>
 <?php if (isset($messages['name'])) print($messages['name']); ?>
       <label> Имя:<br />
-      <input name="name" <?php if (isset($errors['name']) && $errors['name']==2) print 'style="color:red"'; else print 'style="color:black"'; ?> value="<?php if (isset($errors['name'])) print $values['name']; ?>" /></label><br />
+      <input name="name" <?php if (isset($errors['name']) && $errors['name']==2) print 'style="color:red"'; else print 'style="color:black"'; ?> value="<?php if (isset($values['name'])) print $values['name']; ?>" /></label><br />
  
 <?php if (isset($messages['email'])) print($messages['email']); ?>
       <label> e-mail:<br />
-   <input name="email" <?php if (isset($errors['email']) && $errors['email']==2) print 'style="color:red"'; else print 'style="color:black"';?> value="<?php if (isset($errors['email'])) print $values['email']; ?>" type="email" /> </label><br />
+   <input name="email" <?php if (isset($errors['email']) && $errors['email']==2) print 'style="color:red"'; else print 'style="color:black"';?> value="<?php if (isset($values['email'])) print $values['email']; ?>" type="email" /> </label><br />
        
 <?php if (isset($messages['date'])) print($messages['date']); ?>
-    <label>  Дата рождения:<br /><input name="date"  value="<?php if (isset($errors['date'])) print $values['date']; ?>" type="date" /></label><br />
+    <label>  Дата рождения:<br /><input name="date"  value="<?php if (isset($values['date'])) print $values['date']; ?>" type="date" /></label><br />
              
 <?php if (isset($messages['gender'])) print($messages['gender']); ?>
              Пол:<br /> 
@@ -84,7 +71,7 @@ input
                Биография:<br />
                <textarea name="biography" 
                          <?php if (isset($errors['biography']) && $errors['biography']==2) print 'style="color:red"'; else print 'style="color:black"'; ?>
-                         value="<?php if (isset($errors['biography'])) print $values['biography']; ?>" ></textarea>
+                         value="<?php if (isset($values['biography'])) print $values['biography']; ?>" ></textarea>
              </label><br />
              
              <br />
