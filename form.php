@@ -48,9 +48,9 @@ if (!empty($messages)) {
       <input name="name" <?php if (isset($errors['name']) && $errors['name']==2) print 'style="color:red"'; ?> value="<?php if (isset($errors['name'])) print $values['name']; ?>" /></label><br />
 
  <label> e-mail:<br />
- <input name="email" <?php if ($errors['email']) print 'color="red"'; ?> value="<?php print $values['email']; ?>" type="email" /> </label><br />
+ <input name="email" <?php if (isset($errors['email']) && $errors['email']==2) print 'style="color:red"';?> value="<?php if (isset($errors['email'])) print $values['email']; ?>" type="email" /> </label><br />
        
-    <label>  Дата рождения:<br /><input name="date" <?php if ($errors['date']) print 'class="error"'; ?> value="<?php print $values['date']; ?>" type="date" /></label><br />
+    <label>  Дата рождения:<br /><input name="date"  value="<?php if (isset($errors['date'])) print $values['date']; ?>" type="date" /></label><br />
              
              Пол:<br /> 
              <label><input type="radio" checked="checked" name="gender" value="m" /> М</label>
@@ -75,8 +75,8 @@ if (!empty($messages)) {
        <label>
                Биография:<br />
                <textarea name="biography" 
-                         <?php if ($errors['biography']) print 'class="error"' ?>
-                         value="<?php print $values['biography']; ?>" ></textarea>
+                         <?php if (isset($errors['biography']) && $errors['biography']==2) print 'style="color:red"'; ?>
+                         value="<?php if (isset($errors['biography'])) print $values['biography']; ?>" ></textarea>
              </label><br />
              
              <br />
