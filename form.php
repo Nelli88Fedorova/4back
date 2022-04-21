@@ -30,14 +30,14 @@ input
 </head>
 <body>
 <?php
-if (!empty($messages)) {
-  print('<div id="messages">');
-  // Выводим все сообщения.
-  foreach ($messages as $message) {
-    print($message);
-  }
-  print('</div>');
-}
+// if (!empty($messages)) {
+//   print('<div id="messages">');
+//   // Выводим все сообщения.
+//   foreach ($messages as $message) {
+//     print($message);
+//   }
+//   print('</div>');
+// }
 
 // Далее выводим форму отмечая элементы с ошибками классом error
 // и задавая начальные значения элементов ранее сохраненными.
@@ -46,7 +46,7 @@ if (!empty($messages)) {
     <h4><form action="" method="POST">
       <label> Имя:<br />
       <input name="name" <?php if (isset($errors['name']) && $errors['name']==2) print 'style="color:red"'; else print 'style="color:black"'; ?> value="<?php if (isset($errors['name'])) print $values['name']; ?>" /></label><br />
-
+<?php if (isset($messages['name'])) print($messages['name']); ?>
  <label> e-mail:<br />
  <input name="email" <?php if (isset($errors['email']) && $errors['email']==2) print 'style="color:red"'; else print 'style="color:black"';?> value="<?php if (isset($errors['email'])) print $values['email']; ?>" type="email" /> </label><br />
        
