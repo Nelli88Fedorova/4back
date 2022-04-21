@@ -72,7 +72,13 @@ else {
     setcookie($errorname, '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else if (preg_match("/[^а-яА-ЯёЁa-zA-Z0-9\-_\@]+/",$v))
+  else if ($key=='email' && filter_var($email, FILTER_VALIDATE_EMAIL) == false)
+  {
+    setcookie( $errorname, '2', time() + 24 * 60 * 60);
+    setcookie($key, $v, time() + 30 * 24 * 60 * 60);
+    $errors = TRUE;
+  }
+  else if (preg_match("/[^а-яА-ЯёЁa-zA-Z0-9\-_\@]+/",$v) ) 
   {
     setcookie( $errorname, '2', time() + 24 * 60 * 60);
     setcookie($key, $v, time() + 30 * 24 * 60 * 60);
