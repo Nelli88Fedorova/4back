@@ -33,14 +33,14 @@ input
 <?php if (isset($messages['save'])) print($messages['save']); ?>
 <?php if (isset($messages['name'])) print($messages['name']); ?>
       <label> Имя:<br />
-      <input name="name" <?php if (isset($errors['name']) && $errors['name']==2) print 'style="color:red"'; else print 'style="color:black"'; ?> value="<?php $values['name']; ?>" /></label><br />
+      <input name="name" <?php if (isset($errors['name']) && $errors['name']==2) {print 'style="color:red"'}; else {print 'style="color:black"'}; ?> value="<?php print $values['name']; ?>" /></label><br />
  
 <?php if (isset($messages['email'])) print($messages['email']); ?>
       <label> e-mail:<br />
-   <input name="email" <?php if (isset($errors['email']) && $errors['email']==2) print 'style="color:red"'; else print 'style="color:black"';?> value="<?php $values['email']; ?>" type="email" /> </label><br />
+   <input name="email" <?php if (isset($errors['email']) && $errors['email']==2) {print 'style="color:red"'}; else {print 'style="color:black"'};?> value="<?php print $values['email']; ?>" type="email" /> </label><br />
        
 <?php if (isset($messages['date'])) print($messages['date']); ?>
-    <label>  Дата рождения:<br /><input name="date"  value="<?php $values['date']; ?>" type="date" /></label><br />
+    <label>  Дата рождения:<br /><input name="date"  value="<?php print $values['date']; ?>" type="date" /></label><br />
              
 <?php if (isset($messages['gender'])) print($messages['gender']); ?>
              Пол:<br /> 
@@ -70,7 +70,7 @@ input
 <?php if (isset($messages['biography'])) print($messages['biography']); ?>
                Биография:<br />
                <textarea name="biography" 
-                         <?php if (isset($errors['biography']) && $errors['biography']==2) print 'style="color:red"'; else print 'style="color:black"'; ?>
+                         <?php if (isset($errors['biography']) && $errors['biography']==2) {print 'style="color:red"'}; else {print 'style="color:black"'}; ?>
                          value="<?php print $values['biography']; ?>" ></textarea>
              </label><br />
              
