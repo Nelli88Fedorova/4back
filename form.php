@@ -75,7 +75,7 @@ input
              </label><br />
 <?php if (isset($errors['check']) ) print('<div style="color:red"> Необходимо согласия на обработку данных!</div>'); ?>
              <br />
-             <label><input type="checkbox" 
+             <label><input type="checkbox" value="Y"
               name="check" />
                Согласен(а) на обработку данных. </label><br />
              
