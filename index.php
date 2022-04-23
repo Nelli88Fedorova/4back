@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
   $errors = array();
   $values = array();
  
-  $parametrs=array('name', 'email','date','gender','hand','biography','syperpover');
+  $parametrs=array('name', 'email','date','gender','hand','biography','syperpover','check');
   foreach ($parametrs as $name)
   {
     if(isset($_COOKIE[$name]))
@@ -82,7 +82,12 @@ else {
   // Проверяем ошибки.
   $errors = FALSE;
   foreach ($formdata as  $key =>$v)
- {
+  {
+  //  if(isset($_POST['check']))
+  //  {
+  //   setcookie('check' ,'check', time() + 24 * 60 * 60);
+  //  }
+
   $errorname=$key ."_error";
   if (empty($v))
   {
