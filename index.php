@@ -1,5 +1,4 @@
 <?php
-// при одной ошибке все остальные удачно заполненные поля очищаются
 header('Content-Type: text/html; charset=UTF-8');
 if ($_SERVER['REQUEST_METHOD'] == 'GET') 
 {
@@ -25,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
     if(isset($_COOKIE[$errorname]))
   $errors[$name]=$_COOKIE[$errorname];
   }
-  $formassage=array('name'=>" Имя", 'email'=>" Электронная почта",'date'=>" Дата рождения",'gender'=>" Пол",'hand'=>" Конечности",'biography'=>" Биография",'syperpover'=>" Суперспособность");
+  $formassage=array('name'=>" Имя", 'email'=>" Электронная почта",'date'=>" Дата рождения",'gender'=>" Пол",'hand'=>" Конечности",'biography'=>" Биография",'syperpover'=>" Суперспособность",'check'=>" ");
   foreach ($errors as $name =>$val)
  { 
    if (isset($name))
@@ -36,12 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
     setcookie($errorname, '', time() - 3600);
   }
  }
-//$no=true; if(isset($_COOKIE['No'])){$no=false;}
-foreach ($errors as $name =>$val)
-print('<div >$Errors Ключ:' .(string)$name.' Значение:'. (string)$val.'</div>');
-foreach ($values as $name =>$val)
-print('<div >$Values Ключ:' .(string)$name.' Значение:'. (string)$val.'</div>');
-
 
  include('form.php');
 }
@@ -55,13 +48,6 @@ else {
   $check=$_POST['check'];
   $syperpover=implode(',',$_POST['syperpover']);
   
-  // $errors = FALSE;
-  // if(isset($_POST['check']))
-  // {
-  //   $errors=true;
-  //   setcookie('No','',time() + 30 * 24 * 60 * 60);
-  // }
-
   $formpoints=array(
     'gender'=>$_POST['gender'],
     'hand'=>$_POST['hand'],
@@ -83,11 +69,6 @@ else {
   $errors = FALSE;
   foreach ($formdata as  $key =>$v)
   {
-  //  if(isset($_POST['check']))
-  //  {
-  //   setcookie('check' ,'check', time() + 24 * 60 * 60);
-  //  }
-
   $errorname=$key ."_error";
   if (empty($v))
   {
@@ -107,8 +88,6 @@ else {
     $errors = TRUE;
   }
   else {
-   // setcookie($errorname, '', time() - 3600);
-   // setcookie($key, '', time() -3600);
    setcookie($key, $v, time() + 30 * 24 * 60 * 60);
   }
  }
