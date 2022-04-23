@@ -71,7 +71,7 @@ input
                Биография:<br />
                <textarea name="biography" 
                          <?php if (isset($errors['biography']) && $errors['biography']==2) print 'style="color:red"'; else print 'style="color:black"'; ?>
-                         value="<?php rint $values['biography']; ?>" ></textarea>
+                         value="<?php print $values['biography']; ?>" ></textarea>
              </label><br />
              
              <br />
