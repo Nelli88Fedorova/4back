@@ -49,19 +49,19 @@ input
        
 <?php if (isset($messages['hand'])) print($messages['hand']); ?>
        Количество конечностей:<br />
-             <label><input type="radio" checked="checked" name="hand" value="1" />1</label>
-             <label><input type="radio" name="hand" value="2" /> 2</label>
-             <label><input type="radio" name="hand" value="3" /> 3</label>
-             <label><input type="radio" name="hand" value="4" /> 4</label>
-             <label><input type="radio" name="hand" value="5" /> 5</label>
+             <label><input type="radio" <?php if(isset($values['hand']) && $values['hand'] == 1) print ' checked="checked"'; ?> checked="checked" name="hand" value="1" />1</label>
+             <label><input type="radio" <?php if(isset($values['hand']) && $values['hand'] == 2) print ' checked="checked"'; ?>  name="hand" value="2" /> 2</label>
+             <label><input type="radio" <?php if(isset($values['hand']) && $values['hand'] == 3) print ' checked="checked"'; ?>  name="hand" value="3" /> 3</label>
+             <label><input type="radio" <?php if(isset($values['hand']) && $values['hand'] == 4) print ' checked="checked"'; ?>  name="hand" value="4" /> 4</label>
+             <label><input type="radio" <?php if(isset($values['hand']) && $values['hand'] == 5) print ' checked="checked"'; ?>  name="hand" value="5" /> 5</label>
 
 <?php if (isset($messages['syperpover'])) print($messages['syperpover']); ?>             
              <label>
                Сверхспособности:<br />
                <select name="syperpover[]" multiple>
-                 <option selected="selected" value="immortality">бессмертие</option>
-                 <option value="passing through walls" >прохождение сквозь стены</option>
-                 <option value="levitation">левитация</option>
+                 <option <?php if(isset($values['hand']) && $values['hand'] == "immortality") print 'selected="selected"'; ?> selected="selected" value="immortality">бессмертие</option>
+                 <option <?php if(isset($values['hand']) && $values['hand'] == "passing through walls") print 'selected="selected"'; ?> value="passing through walls" >прохождение сквозь стены</option>
+                 <option <?php if(isset($values['hand']) && $values['hand'] == "levitation") print 'selected="selected"'; ?> value="levitation">левитация</option>
                </select>
              </label><br />
        
@@ -73,11 +73,11 @@ input
                          <?php if (isset($errors['biography']) && $errors['biography']==2) print 'style="color:red"'; else print 'style="color:black"'; ?>
                          value="<?php print $values['biography']; ?>" ></textarea>
              </label><br />
-             
+<?php if (isset($messages['check'])) print('<div style="color:red"> Нет согласия на обработку данных!</div>'); ?>
              <br />
              <label><input type="checkbox" checked="checked"
                name="check" />
-               С контрактом ознакомлен(а) </label><br />
+               Согласен(а) на обработку данных. </label><br />
              
 <input type="submit" value="Отправить" />
 </form></h4>
