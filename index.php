@@ -37,6 +37,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
   }
  }
 //$no=true; if(isset($_COOKIE['No'])){$no=false;}
+foreach ($errors as $name =>$val)
+print('<div >$Errors Ключ:' .(string)$name.' Значение:'. (string)$val'</div>');
+foreach ($values as $name =>$val)
+print('<div >$Values Ключ:' .(string)$name.' Значение:'. (string)$val'</div>');
+
 
  include('form.php');
 }
