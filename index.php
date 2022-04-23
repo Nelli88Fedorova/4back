@@ -36,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
     setcookie($errorname, '', time() - 3600);
   }
  }
+ $no=true; if(isset($_COOKIE['No'])){$no=false;}
 
  include('form.php');
 }
@@ -49,6 +50,13 @@ else {
   $check=$_POST['check'];
   $syperpover=implode(',',$_POST['syperpover']);
   
+  $errors = FALSE;
+  if($check !='Yes')
+  {
+    $errors=true;
+    setcookie('No',1,time() + 30 * 24 * 60 * 60);
+  }
+
   $formpoints=array(
     'gender'=>$_POST['gender'],
     'hand'=>$_POST['hand'],
@@ -59,13 +67,11 @@ else {
     setcookie($key, $v, time() + 30 * 24 * 60 * 60);
   }
   
-  $errors = FALSE;
    $formdata=array(
     'name'=>$_POST['name'],
     'email'=>$_POST['email'],
     'date'=>$_POST['date'],
     'biography'=>$_POST['biography'],
-    'check'=>$_POST['check'],
      );
   // Проверяем ошибки.
   $errors = FALSE;
@@ -96,8 +102,6 @@ else {
   }
  }
 
-
-
   if ($errors) {
     header('Location: index.php');
     exit();
@@ -110,6 +114,7 @@ else {
     setcookie('hand_error', '',time() - 3600);
     setcookie('biography_error', '',time() - 3600);
     setcookie('syperpover_error', '',time() - 3600);
+    setcookie('No','',time() - 3600);
     
     
     
@@ -128,7 +133,7 @@ else {
       print('Error:'.$e->GetMessage());
       exit();
     }
-    //test
+    
     setcookie('save', '1');
     header('Location: index.php');
   }
