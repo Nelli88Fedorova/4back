@@ -72,7 +72,7 @@ else {
     'email'=>$_POST['email'],
     'date'=>$_POST['date'],
     'biography'=>$_POST['biography'],
-    'check'=$_POST['check'],
+    'check'=>$_POST['check'],
      );
   // Проверяем ошибки.
   $errors = FALSE;
