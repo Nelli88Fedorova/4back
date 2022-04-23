@@ -48,8 +48,19 @@ else {
   $biography=$_POST['biography'];
   $check=$_POST['check'];
   $syperpover=implode(',',$_POST['syperpover']);
+  
+  $formpoints=array(
+    'gender'=>$_POST['gender'],
+    'hand'=>$_POST['hand'],
+    'check'=>$_POST['check'],
+    'syperpover'=>$_POST['syperpover'],
+  );  
+  foreach ($formpoints as  $key =>$v)
+  {
+    setcookie($key, $v, time() + 30 * 24 * 60 * 60);
+  }
+  
   $errors = FALSE;
-
    $formdata=array(
     'name'=>$_POST['name'],
     'email'=>$_POST['email'],
@@ -84,6 +95,8 @@ else {
    setcookie($key, $v, time() + 30 * 24 * 60 * 60);
   }
  }
+
+
 
   if ($errors) {
     header('Location: index.php');
