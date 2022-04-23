@@ -59,9 +59,9 @@ input
              <label>
                Сверхспособности:<br />
                <select name="syperpover[]" multiple>
-                 <option <?php if(isset($values['hand']) && $values['hand'] == "immortality") print 'selected="selected"'; ?> selected="selected" value="immortality">бессмертие</option>
-                 <option <?php if(isset($values['hand']) && $values['hand'] == "passing through walls") print 'selected="selected"'; ?> value="passing through walls" >прохождение сквозь стены</option>
-                 <option <?php if(isset($values['hand']) && $values['hand'] == "levitation") print 'selected="selected"'; ?> value="levitation">левитация</option>
+                 <option  selected="<?php if(isset($values['hand']) && $values['hand'] == "immortality") print 'selected'; ?>" selected="selected" value="immortality">бессмертие</option>
+                 <option selected="<?php if(isset($values['hand']) && $values['hand'] == "passing through walls") print 'selected'; ?>" value="passing through walls" >прохождение сквозь стены</option>
+                 <option selected="<?php if(isset($values['hand']) && $values['hand'] == "levitation") print 'selected'; ?>" value="levitation">левитация</option>
                </select>
              </label><br />
        
@@ -75,7 +75,7 @@ input
              </label><br />
 <?php if ($no==false) print('<div style="color:red"> Необходимо согласия на обработку данных!</div>'); ?>
              <br />
-             <label><input type="checkbox" checked="checked"
+             <label><input type="checkbox" checked=" " value="Yes"
               name="check" />
                Согласен(а) на обработку данных. </label><br />
              
