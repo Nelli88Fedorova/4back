@@ -1,5 +1,4 @@
 <?php
-//вывод сообщения о том что форма успешно отправлена
 // при одной ошибке все остальные удачно заполненные поля очищаются
 header('Content-Type: text/html; charset=UTF-8');
 if ($_SERVER['REQUEST_METHOD'] == 'GET') 
@@ -14,6 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
   $values = array();
  
   $parametrs=array('name', 'email','date','gender','hand','biography','syperpover');
+  foreach ($parametrs as $name)
+  {
+    if(isset($_COOKIE[$name]))
+   { $values[$name]=$_COOKIE[$name];}
+   else $values[$name]='';
+  }
   foreach ($parametrs as $name)
   {
     $errorname=$name .'_error';
@@ -32,12 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
     setcookie($errorname, '', time() - 3600);
   }
  }
-  foreach ($parametrs as $name)
-  {
-    if(isset($values[$name]))
-   { $values[$name]=$_COOKIE[$name];}
-   else $values[$name]='';
-  }
 
  include('form.php');
 }
