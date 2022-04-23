@@ -73,7 +73,7 @@ input
                          <?php if (isset($errors['biography']) && $errors['biography']==2) print 'style="color:red"'; else print 'style="color:black"'; ?>
                          value="<?php print $values['biography']; ?>" ></textarea>
              </label><br />
-<?php if (isset($messages['check']) and $messages['check']==1 ) print('<div style="color:red"> Нет согласия на обработку данных!</div>'); ?>
+<?php if ($no==false) print('<div style="color:red"> Необходимо согласия на обработку данных!</div>'); ?>
              <br />
              <label><input type="checkbox"
               name="check" />
