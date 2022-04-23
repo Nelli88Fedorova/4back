@@ -51,10 +51,10 @@ else {
   $syperpover=implode(',',$_POST['syperpover']);
   
   $errors = FALSE;
-  if($check !='Yes')
+  if(isset($_POST['check']))
   {
     $errors=true;
-    setcookie('No',1,time() + 30 * 24 * 60 * 60);
+    setcookie('No','',time() + 30 * 24 * 60 * 60);
   }
 
   $formpoints=array(
