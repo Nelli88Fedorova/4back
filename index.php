@@ -52,7 +52,6 @@ else {
   $formpoints=array(
     'gender'=>$_POST['gender'],
     'hand'=>$_POST['hand'],
-    'check'=>$_POST['check'],
     'syperpover'=>$_POST['syperpover'],
   );  
   foreach ($formpoints as  $key =>$v)
@@ -66,6 +65,7 @@ else {
     'email'=>$_POST['email'],
     'date'=>$_POST['date'],
     'biography'=>$_POST['biography'],
+    'check'=>$_POST['check'],
      );
   // Проверяем ошибки.
   $errors = FALSE;
@@ -77,13 +77,13 @@ else {
     setcookie($errorname, '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else if ($key=='email' && filter_var($v, FILTER_VALIDATE_EMAIL) == false)
+  else if ($key=='email' && $krey!='check' filter_var($v, FILTER_VALIDATE_EMAIL) == false)
   {
     setcookie( $errorname, '2', time() + 24 * 60 * 60);
     setcookie($key, $v, time() + 30 * 24 * 60 * 60);
     $errors = TRUE;
   }
-  else if ($key !='email' && preg_match("/[^а-яА-ЯёЁa-zA-Z0-9\ \-_]+/",$v) ) 
+  else if ($key !='email' && $krey!='check' && preg_match("/[^а-яА-ЯёЁa-zA-Z0-9\ \-_]+/",$v) ) 
   {
     setcookie( $errorname, '2', time() + 24 * 60 * 60);
     setcookie($key, $v, time() + 30 * 24 * 60 * 60);
