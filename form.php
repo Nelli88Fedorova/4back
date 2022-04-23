@@ -59,9 +59,9 @@ input
              <label>
                Сверхспособности:<br />
                <select name="syperpover[]" multiple>
-                 <option  selected="<?php if(isset($values['hand']) && $values['hand'] == "immortality") print 'selected'; ?>" selected="selected" value="immortality">бессмертие</option>
-                 <option selected="<?php if(isset($values['hand']) && $values['hand'] == "passing through walls") print 'selected'; ?>" value="passing through walls" >прохождение сквозь стены</option>
-                 <option selected="<?php if(isset($values['hand']) && $values['hand'] == "levitation") print 'selected'; ?>" value="levitation">левитация</option>
+                 <option value="immortality" selected="selected">бессмертие</option>
+                 <option value="passing through walls" >прохождение сквозь стены</option>
+                 <option value="levitation">левитация</option>
                </select>
              </label><br />
        
@@ -73,9 +73,9 @@ input
                          <?php if (isset($errors['biography']) && $errors['biography']==2) print 'style="color:red"'; else print 'style="color:black"'; ?>
                          value="<?php print $values['biography']; ?>" ></textarea>
              </label><br />
-<?php if ($no==false) print('<div style="color:red"> Необходимо согласия на обработку данных!</div>'); ?>
+<?php if (isset($errors['check']) ) print('<div style="color:red"> Необходимо согласия на обработку данных!</div>'); ?>
              <br />
-             <label><input type="checkbox" checked=" " value="Yes"
+             <label><input type="checkbox" 
               name="check" />
                Согласен(а) на обработку данных. </label><br />
              
