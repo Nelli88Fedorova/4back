@@ -77,7 +77,7 @@ else {
     setcookie($errorname, '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
-  else if ($key=='email' && $krey!='check' filter_var($v, FILTER_VALIDATE_EMAIL) == false)
+  else if ($key=='email' && $krey!='check' && filter_var($v, FILTER_VALIDATE_EMAIL) == false)
   {
     setcookie( $errorname, '2', time() + 24 * 60 * 60);
     setcookie($key, $v, time() + 30 * 24 * 60 * 60);
