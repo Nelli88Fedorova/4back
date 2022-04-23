@@ -25,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
     if(isset($_COOKIE[$errorname]))
   $errors[$name]=$_COOKIE[$errorname];
   }
-
   $formassage=array('name'=>" Имя", 'email'=>" Электронная почта",'date'=>" Дата рождения",'gender'=>" Пол",'hand'=>" Конечности",'biography'=>" Биография",'syperpover'=>" Суперспособность");
   foreach ($errors as $name =>$val)
  { 
@@ -62,8 +61,8 @@ else {
   foreach ($formdata as  $key =>$v)
  {
   $errorname=$key ."_error";
- if (empty($v))
- {
+  if (empty($v))
+  {
     setcookie($errorname, '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
@@ -80,9 +79,9 @@ else {
     $errors = TRUE;
   }
   else {
-    setcookie($errorname, '', time() - 3600);
+   // setcookie($errorname, '', time() - 3600);
    // setcookie($key, '', time() -3600);
-   setcookie($key, $name, time() + 30 * 24 * 60 * 60);
+   setcookie($key, $v, time() + 30 * 24 * 60 * 60);
   }
  }
 
