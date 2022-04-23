@@ -44,8 +44,8 @@ input
              
 <?php if (isset($messages['gender'])) print($messages['gender']); ?>
              Пол:<br /> 
-             <label><input type="radio" checked="checked" name="gender" value="m" /> М</label>
-             <label><input type="radio" name="gender" value="w" /> Ж</label><br />
+             <label><input type="radio" <?php if(isset($values['gender']) && $values['gender'] == "m") print ' checked="checked"'; ?>  checked="checked" name="gender" value="m" /> М</label>
+             <label><input type="radio" <?php if(isset($values['gender']) && $values['gender'] == "w") print ' checked="checked"'; ?> name="gender" value="w" /> Ж</label><br />
        
 <?php if (isset($messages['hand'])) print($messages['hand']); ?>
        Количество конечностей:<br />
@@ -73,10 +73,10 @@ input
                          <?php if (isset($errors['biography']) && $errors['biography']==2) print 'style="color:red"'; else print 'style="color:black"'; ?>
                          value="<?php print $values['biography']; ?>" ></textarea>
              </label><br />
-<?php if (isset($messages['check'])) print('<div style="color:red"> Нет согласия на обработку данных!</div>'); ?>
+<?php if (isset($messages['check']) and $messages['check']==1 ) print('<div style="color:red"> Нет согласия на обработку данных!</div>'); ?>
              <br />
-             <label><input type="checkbox" checked="checked"
-               name="check" />
+             <label><input type="checkbox"
+              name="check" />
                Согласен(а) на обработку данных. </label><br />
              
 <input type="submit" value="Отправить" />
