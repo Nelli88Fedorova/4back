@@ -71,7 +71,7 @@ input
                Биография:<br />
                <textarea name="biography" 
                          <?php if (isset($errors['biography']) && $errors['biography']==2) print 'style="color:red"'; else print 'style="color:black"'; ?>
-                         value="<?php print $values['biography']; ?>" ></textarea>
+                         placeholder="<?php print $values['biography']; ?>" ></textarea>
              </label><br />
              <br />
              <?php if (isset($errors['check']) ) print('<div style="color:red"> Необходимо согласия на обработку данных!</div>'); ?>
